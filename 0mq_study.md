@@ -1,3 +1,4 @@
+```
 class client_task {
 public:
     client_task()
@@ -37,3 +38,4 @@ private:
     zmq::context_t ctx_;
     zmq::socket_t client_socket_;
 };
+```
