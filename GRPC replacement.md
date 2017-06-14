@@ -1,5 +1,5 @@
 # glob rule: maxmum reuse the current arc
-##common
+## common
 ### service definition
 ```
 enum ServiceType {
