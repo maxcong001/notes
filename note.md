@@ -5,6 +5,9 @@ xe config --global http.proxy http://135.245.48.34:8000
 
 C:\Users\mcong\AppData\Local\GitHubDesktop\app-0.8.0\resources\app\git\cmd>git.e
 xe config --global https.proxy http://135.245.48.34:8000
+
+git config --global --unset http.proxy
+git config --global --unset https.proxy
 ```
 CMake find package
 ```
