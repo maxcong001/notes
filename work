@@ -10,3 +10,6 @@ mrkill g=$ISSUE, mr= fsgui875398a to kill fsgui875398a //not submit to ECMS
   Rework ---Create new MR; getversion using original and new mr.
 Complete the IMR
 Normal: elmr g=relxx load=10.00 mr=xxx,xxx
+
+lsslogin1:/home/mcong> query rel=grpm|grep 966238
+
