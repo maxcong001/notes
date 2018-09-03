@@ -1,0 +1,12 @@
+printimr lssr27 927831
+query rel=dep|grep 903769 ---- dependency checking
+mrsolve g=$ISSUE, mr=glob875398a--- MR description, test plan, solution must be addressed clearly
+mredit ftype=abst mr=fsgui875398a to modify MR’s abstract information
+mredit ftype=dest mr=fsgui875398a to modify MR’s description
+mrkill g=$ISSUE, mr= fsgui875398a to kill fsgui875398a //not submit to ECMS
+   Send CI---cipack mr=xx>xx.pdf ----cipack mr=xxb  incmr=xxxa>xxxall.pdf visit the following link:
+   http://ihgpweb.ih.lucent.com/~feltonxu/cinotice/
+
+  Rework ---Create new MR; getversion using original and new mr.
+Complete the IMR
+Normal: elmr g=relxx load=10.00 mr=xxx,xxx
