@@ -1,4 +1,4 @@
-#include <fcntl.h>  
+#include <fcntl.h>
 #include <signal.h>
 #include <stdio.h>
 #include <string.h>
@@ -6,40 +6,35 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
+#include <stdlib.h>
 
 static int alloc_size;
-static char* memory;
+static char *memory;
 
-void segv_handler (int signal_number)  {
- printf ("memory accessed!\n");
- mprotect (memory, alloc_size, PROT_READ | PROT_WRITE);
-} 
+void segv_handler(int signal_number)
+{
+    printf("memory accessed !\n");
+    mprotect(memory, alloc_size, PROT_READ | PROT_WRITE);
+}
 
-int main () {
- int fd;
- struct sigaction sa;
+int main()
+{
+    int fd;
+    struct sigaction sa;
 
- /* Install segv_handler as the handler for SIGSEGV. */
- memset (&sa, 0, sizeof (sa));
-  sa.sa_handler = &segv_handler;
- sigaction (SIGSEGV, &sa, NULL);
+    memset(&sa, 0, sizeof(sa));
+    sa.sa_handler = &segv_handler;
+    sigaction(SIGSEGV, &sa, NULL);
 
- /* Allocate one page of memory by mapping /dev/zero. Map the memory
- as write-only, initially. */
-  alloc_size = getpagesize ();
- fd = open ("/dev/zero", O_RDONLY);
-  memory = mmap (NULL, alloc_size, PROT_WRITE, MAP_PRIVATE, fd, 0);
-  close (fd);
-  /* Write to the page to obtain a private copy. */
-  memory[0] = 0;
- /* Make the memory unwritable. */
-  mprotect (memory, alloc_size, PROT_NONE);
+    alloc_size = getpagesize();
 
- /* Write to the allocated memory region. */
- memory[0] = 1;
+    memory = (char *)aligned_alloc(alloc_size, alloc_size);
 
-  /* All done; unmap the memory. */
- printf ("all done\n");
- munmap (memory, alloc_size);
- return 0;
+    memory[0] = 0;
+    mprotect(memory, alloc_size, PROT_NONE);
+
+    memory[0] = 1;
+    printf("all done\n");
+    free(memory);
+    return 0;
 }
