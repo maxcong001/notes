@@ -13,3 +13,5 @@ Normal: elmr g=relxx load=10.00 mr=xxx,xxx
 
 lsslogin1:/home/mcong> query rel=grpm|grep 966238
 
+TPKT: RFC2126 chap:4.3 https://tools.ietf.org/html/rfc2126
+
