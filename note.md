@@ -35,3 +35,13 @@ pull image speedup
 ```
 docker pull registry.docker-cn.com/library/ubuntu:16.04
 ```
+http client/server benchmark
+RESULTS
+bench\res 	req/sec 	compared to pure-asio impl
+pure-asio 	517737.34 	100%
+Pistache 	163593.97 	31.60%
+RESTinio (no timers) 	152683.06 	29.49%
+Beast 	145949.15 	28.19%
+RESTinio (timers) 	115309.33 	22.27%
+Restbed 	58223.26 	11.25%
+Cpprestsdk 	9487.37 	1.83%
