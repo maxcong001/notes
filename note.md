@@ -30,3 +30,8 @@ curl
 curl -X GET --user savagecm@qq.com:123456 -v  http://135.251.166.251:6502/v1/ivmero/api/users/signon
 curl -X POST -d '{"email":"savagecm@qq.com","password":"123456","name":"Max","lastName":"Cong"}' -v -H "Content-Ty"  http://135.251.166.251:6502/v1/ivmero/api/users/signup
 ```
+docker
+pull image speedup
+```
+docker pull registry.docker-cn.com/library/ubuntu:16.04
+``
