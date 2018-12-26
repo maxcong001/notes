@@ -34,4 +34,4 @@ docker
 pull image speedup
 ```
 docker pull registry.docker-cn.com/library/ubuntu:16.04
-``
+```
