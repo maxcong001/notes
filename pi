@@ -1,5 +1,7 @@
-# pi 
+# pi  
+
 docker
+
 ``` 
 https://download.docker.com/linux/raspbian/dists/stretch/pool/stable/armhf/
 1. sudo apt-get install -y libltdl7
@@ -13,8 +15,10 @@ https://download.docker.com/linux/raspbian/dists/stretch/pool/stable/armhf/
 
 
 ``` 
+
 install k8s
 https://blog.csdn.net/liukuan73/article/details/83150473
+
 ``` 
 with root:
 curl https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg | apt-key add -
@@ -32,6 +36,7 @@ sudo apt-get update
 ``` 
 
 禁用SELINUX
+
 ``` 
 树莓派系统默认不安装selinux，无需设置。假如安装了的话，按如下步骤禁用selinux
 临时禁用（重启后失效）
@@ -45,20 +50,25 @@ SELINUX=permissive
         不禁用selinux的话有时还会出现明明容器里是root身份运行，操作挂载进来的主机文件夹时没有权限的情况，这时候要么配置selinux的权限，要么就禁掉selinux
         另外，当docker的storage-driver使用overlay2的时候，低版本内核的selinux不支持overlay2文件驱动，docker启动时设置为--selinux-enabled会失败报错:“Error starting daemon: SELinux is not supported with the overlay2 graph driver on this kernel”，需设置--selinux-enabled=false
 ``` 
+
 准备docker images
+
 ```   
 mirrorgooglecontainers
 ```   
 
 
 开启memory的cgroup功能
+
 ```   
 树莓派是基于debian的系统，而debian默认没有mount memory的cgroup，这里需要手动开启
 编辑/boot/cmdline.txt，在该行的末尾添加此文本，但不要创建任何新行：
 cgroup_enable=memory
 重启
 ```  
+
 禁用swap
+
 ``` 
 1. sudo swapoff -a
 2. 同时还需要修改/etc/fstab文件，注释掉 SWAP 的自动挂载，防止机子重启后swap启用。
@@ -68,7 +78,9 @@ cgroup_enable=memory
         <1>https://github.com/kubernetes/kubernetes/issues/7294
         <2>https://github.com/kubernetes/kubernetes/issues/53533
 ``` 
+
 配置使用阿里云镜像仓库加速
+
 ``` 
 https://cr.console.aliyun.com/cn-hangzhou/mirrors
 ``` 
