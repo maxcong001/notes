@@ -1,14 +1,33 @@
+# pi 
 docker
 ``` 
 https://download.docker.com/linux/raspbian/dists/stretch/pool/stable/armhf/
+1. sudo apt-get install -y libltdl7
+2. wget https://download.docker.com/linux/raspbian/dists/stretch/pool/stable/armhf/docker-ce_18.09.0~3-0~raspbian-stretch_armhf.deb
+3. wget https://download.docker.com/linux/raspbian/dists/stretch/pool/stable/armhf/docker-ce-cli_18.09.0~3-0~raspbian-stretch_armhf.deb
+4. wget https://download.docker.com/linux/raspbian/dists/stretch/pool/stable/armhf/containerd.io_1.2.0~rc.2-1_armhf.deb
+5. sudo dpkg -i containerd.io_1.2.0~rc.2-1_armhf.deb
+6. sudo dpkg -i docker-ce-cli_18.09.0~3-0~raspbian-stretch_armhf.deb
+7. sudo dpkg -i docker-ce_18.09.0~3-0~raspbian-stretch_armhf.deb
+8. sudo usermod -aG docker ${USER}
+
+
 ``` 
 install k8s
 https://blog.csdn.net/liukuan73/article/details/83150473
 ``` 
+with root:
 curl https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg | apt-key add -
-
 echo "deb https://mirrors.aliyun.com/kubernetes/apt/ kubernetes-xenial main" > /etc/apt/sources.list.d/kubernetes.list
 apt-get install -y kubeadm
+
+or
+sudo apt-get update && sudo apt-get install -y apt-transport-https curl 
+sudo curl -s https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg | sudo apt-key add - 
+sudo tee /etc/apt/sources.list.d/kubernetes.list <<-'EOF' 
+deb https://mirrors.aliyun.com/kubernetes/apt kubernetes-xenial main 
+EOF 
+sudo apt-get update
 
 ``` 
 
