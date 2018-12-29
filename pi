@@ -3,6 +3,7 @@ docker
 https://download.docker.com/linux/raspbian/dists/stretch/pool/stable/armhf/
 ``` 
 install k8s
+https://blog.csdn.net/liukuan73/article/details/83150473
 ``` 
 curl https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg | apt-key add -
 
@@ -10,6 +11,24 @@ echo "deb https://mirrors.aliyun.com/kubernetes/apt/ kubernetes-xenial main" > /
 apt-get install -y kubeadm
 
 ``` 
+
+禁用SELINUX
+``` 
+树莓派系统默认不安装selinux，无需设置。假如安装了的话，按如下步骤禁用selinux
+临时禁用（重启后失效）
+$ sudo setenforce 0                 #0代表permissive 1代表enforcing
+永久禁用
+$ sudo vi /etc/selinux/config
+SELINUX=permissive                            
+备注：
+
+        kubelet目前对selinux的支持还不好，需要禁用掉。
+        不禁用selinux的话有时还会出现明明容器里是root身份运行，操作挂载进来的主机文件夹时没有权限的情况，这时候要么配置selinux的权限，要么就禁掉selinux
+        另外，当docker的storage-driver使用overlay2的时候，低版本内核的selinux不支持overlay2文件驱动，docker启动时设置为--selinux-enabled会失败报错:“Error starting daemon: SELinux is not supported with the overlay2 graph driver on this kernel”，需设置--selinux-enabled=false
+``` 
+
+
+
 开启memory的cgroup功能
 ```   
 树莓派是基于debian的系统，而debian默认没有mount memory的cgroup，这里需要手动开启
