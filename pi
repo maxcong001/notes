@@ -54,7 +54,29 @@ SELINUX=permissive
 准备docker images
 
 ```   
-mirrorgooglecontainers
+mirrorgooglecontainers:
+docker pull mirrorgooglecontainers/kube-apiserver-arm:v1.13.1
+docker pull mirrorgooglecontainers/kube-controller-manager-arm:v1.13.1
+docker pull mirrorgooglecontainers/kube-scheduler-arm:v1.13.1
+docker pull mirrorgooglecontainers/kube-proxy-arm:v1.13.1 
+docker pull mirrorgooglecontainers/pause-arm:3.1
+docker pull mirrorgooglecontainers/etcd-arm:3.2.24
+docker pull mirrorgooglecontainers/coredns:1.2.6
+
+
+
+docker tag mirrorgooglecontainers/kube-apiserver-arm:v1.13.1 k8s.gcr.io/kube-apiserver:v1.13.1
+docker tag mirrorgooglecontainers/kube-controller-manager-arm:v1.13.1 k8s.gcr.io/kube-controller-manager:v1.13.1
+docker tag mirrorgooglecontainers/kube-scheduler-arm:v1.13.1 k8s.gcr.io/kube-scheduler:v1.13.1
+docker tag mirrorgooglecontainers/kube-proxy-arm:v1.13.1 k8s.gcr.io/kube-proxy:v1.13.1
+docker tag mirrorgooglecontainers/pause-arm:3.1 k8s.gcr.io/pause:3.1
+docker tag mirrorgooglecontainers/etcd-arm:3.2.24 k8s.gcr.io/etcd:3.2.24
+docker tag mirrorgooglecontainers/kube-apiserver-arm:v1.13.1 k8s.gcr.io/coredns:1.2.6:
+
+
+
+
+
 ```   
 
 
@@ -83,5 +105,14 @@ cgroup_enable=memory
 
 ``` 
 https://cr.console.aliyun.com/cn-hangzhou/mirrors
+
+
+sudo tee /etc/docker/daemon.json <<-'EOF' 
+{ "registry-mirrors": ["https://4erji9ui.mirror.aliyuncs.com"], "iptables": false, "ip-masq": false, "storage-driver": "overlay2", "graph": "/home/pi/docker" 
+}
+EOF
+
+
+
 ``` 
 
