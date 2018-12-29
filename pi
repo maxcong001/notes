@@ -1,19 +1,34 @@
 docker
-```
+``` 
 https://download.docker.com/linux/raspbian/dists/stretch/pool/stable/armhf/
-```
+``` 
 install k8s
-```
+``` 
 curl https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg | apt-key add -
 
 echo "deb https://mirrors.aliyun.com/kubernetes/apt/ kubernetes-xenial main" > /etc/apt/sources.list.d/kubernetes.list
 apt-get install -y kubeadm
 
-``
+``` 
 开启memory的cgroup功能
-```
+```   
 树莓派是基于debian的系统，而debian默认没有mount memory的cgroup，这里需要手动开启
 编辑/boot/cmdline.txt，在该行的末尾添加此文本，但不要创建任何新行：
 cgroup_enable=memory
 重启
-```
+```  
+禁用swap
+``` 
+1. sudo swapoff -a
+2. 同时还需要修改/etc/fstab文件，注释掉 SWAP 的自动挂载，防止机子重启后swap启用。
+备注：
+        Kubernetes 1.8开始要求关闭系统的Swap，如果不关闭，默认配置下kubelet将无法启动，虽然可以通过kubelet的启动参数--fail-swap-on=false更改这个限制，但不建议，最好还是不要开启swap。
+        一些为什么要关闭swap的讨论：
+        <1>https://github.com/kubernetes/kubernetes/issues/7294
+        <2>https://github.com/kubernetes/kubernetes/issues/53533
+``` 
+配置使用阿里云镜像仓库加速
+``` 
+https://cr.console.aliyun.com/cn-hangzhou/mirrors
+``` 
+
