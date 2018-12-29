@@ -1,2 +1,9 @@
 docker
 https://download.docker.com/linux/raspbian/dists/stretch/pool/stable/armhf/
+install k8s
+
+
+curl https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg | apt-key add -
+
+echo "deb https://mirrors.aliyun.com/kubernetes/apt/ kubernetes-xenial main" > /etc/apt/sources.list.d/kubernetes.list
+apt-get install -y kubeadm
