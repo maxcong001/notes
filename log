@@ -1,0 +1,88 @@
+[preflight] You can also perform this action in beforehand using 'kubeadm config images pull'
+error execution phase preflight: [preflight] Some fatal errors occurred:
+        [ERROR ImagePull]: failed to pull image k8s.gcr.io/kube-apiserver:v1.13.1: output: Error response from daemon: Get https://k8s.gcr.io/v2/: net/http: request canceled while waiting for connection (Client.Timeout exceeded while awaiting headers)
+, error: exit status 1
+        [ERROR ImagePull]: failed to pull image k8s.gcr.io/kube-controller-manager:v1.13.1: output: Error response from daemon: Get https://k8s.gcr.io/v2/: net/http: request canceled while waiting for connection (Client.Timeout exceeded while awaiting headers)
+, error: exit status 1
+        [ERROR ImagePull]: failed to pull image k8s.gcr.io/kube-scheduler:v1.13.1: output: Error response from daemon: Get https://k8s.gcr.io/v2/: net/http: request canceled while waiting for connection (Client.Timeout exceeded while awaiting headers)
+, error: exit status 1
+        [ERROR ImagePull]: failed to pull image k8s.gcr.io/kube-proxy:v1.13.1: output: Error response from daemon: Get https://k8s.gcr.io/v2/: net/http: request canceled while waiting for connection (Client.Timeout exceeded while awaiting headers)
+, error: exit status 1
+        [ERROR ImagePull]: failed to pull image k8s.gcr.io/pause:3.1: output: Error response from daemon: Get https://k8s.gcr.io/v2/: net/http: request canceled while waiting for connection (Client.Timeout exceeded while awaiting headers)
+, error: exit status 1
+        [ERROR ImagePull]: failed to pull image k8s.gcr.io/etcd:3.2.24: output: Error response from daemon: Get https://k8s.gcr.io/v2/: net/http: request canceled while waiting for connection (Client.Timeout exceeded while awaiting headers)
+, error: exit status 1
+        [ERROR ImagePull]: failed to pull image k8s.gcr.io/coredns:1.2.6: output: Error response from daemon: Get https://k8s.gcr.io/v2/: net/http: request canceled while waiting for connection (Client.Timeout exceeded while awaiting headers)
+, error: exit status 1
+[preflight] If you know what you are doing, you can make a check non-fatal with `--ignore-preflight-errors=...`
+root@raspberrypi:/home/pi# docker pull mirrorgooglecontainers/kube-apiserver:v1.13.1
+v1.13.1: Pulling from mirrorgooglecontainers/kube-apiserver
+3d80316e96d7: Pull complete
+8edfcedb8403: Pull complete
+Digest: sha256:34cb1137b4740f37f07fd2dec6794828d5e22371bb35b8df27e3496c9a150bd3
+Status: Downloaded newer image for mirrorgooglecontainers/kube-apiserver:v1.13.1
+root@raspberrypi:/home/pi# docker images
+REPOSITORY                              TAG                 IMAGE ID            CREATED             SIZE
+mirrorgooglecontainers/kube-apiserver   v1.13.1             40a63db91ef8        2 weeks ago         181MB
+root@raspberrypi:/home/pi# docker rmi mirrorgooglecontainers/kube-apiserver
+Error: No such image: mirrorgooglecontainers/kube-apiserver
+root@raspberrypi:/home/pi# docker rmi 40a63db91ef8
+Untagged: mirrorgooglecontainers/kube-apiserver:v1.13.1
+Untagged: mirrorgooglecontainers/kube-apiserver@sha256:34cb1137b4740f37f07fd2dec6794828d5e22371bb35b8df27e3496c9a150bd3
+Deleted: sha256:40a63db91ef844887af73e723e40e595e4aa651ac2c5637332d719e42abc4dd2
+Deleted: sha256:018829537020de16a73d3c43046a46cf9e3a11f93363acf5ab119c04d0fc703d
+Deleted: sha256:5fe6d025ca50be7e1547eda7fb6a35a027febb6967308e58f6a468c34039c57c
+root@raspberrypi:/home/pi# docker pull mirrorgooglecontainers/kube-apiserver-arm:v1.13.1
+v1.13.1: Pulling from mirrorgooglecontainers/kube-apiserver-arm
+3841390b5ea7: Pull complete
+c0692b90534e: Pull complete
+Digest: sha256:0d98609459b8f81f41d07a57703cc6871d8f688b422d7d5d0592b413b943fa2b
+Status: Downloaded newer image for mirrorgooglecontainers/kube-apiserver-arm:v1.13.1
+root@raspberrypi:/home/pi# k8s.gcr.io/coredns
+bash: k8s.gcr.io/coredns: No such file or directory
+root@raspberrypi:/home/pi#
+root@raspberrypi:/home/pi#
+root@raspberrypi:/home/pi# docker pull mirrorgooglecontainers/kube-controller-manager-arm:v1.13.1
+v1.13.1: Pulling from mirrorgooglecontainers/kube-controller-manager-arm
+3841390b5ea7: Already exists
+21bd7451f6ab: Pull complete
+Digest: sha256:d220f50d1ee0d25b638c7b79e3c51b9c5d7ccf0b489cd45e2e5567369ad3bd69
+Status: Downloaded newer image for mirrorgooglecontainers/kube-controller-manager-arm:v1.13.1
+root@raspberrypi:/home/pi# docker pull mirrorgooglecontainers/kube-scheduler:v1.13.1-arm:v1.13.1
+invalid reference format
+root@raspberrypi:/home/pi# docker pull mirrorgooglecontainers/kube-scheduler-arm:v1.13.1
+v1.13.1: Pulling from mirrorgooglecontainers/kube-scheduler-arm
+3841390b5ea7: Already exists
+eb3f448001fc: Pull complete
+Digest: sha256:fcdc6a3884027f3d8a5f57c9144d6a2ff7894c2dfced4e61a48e05ab21636293
+Status: Downloaded newer image for mirrorgooglecontainers/kube-scheduler-arm:v1.13.1
+root@raspberrypi:/home/pi# docker pull mirrorgooglecontainers/kube-proxy-arm:v1.13.1
+v1.13.1: Pulling from mirrorgooglecontainers/kube-proxy-arm
+3841390b5ea7: Already exists
+1a3433a0a58e: Pull complete
+e67d0fed81b8: Pull complete
+Digest: sha256:56ac90859ccf24e68a9f92607af5bc20a0af20215c3139c48e97ef54764ea4f0
+Status: Downloaded newer image for mirrorgooglecontainers/kube-proxy-arm:v1.13.1
+root@raspberrypi:/home/pi# docker pull mirrorgooglecontainers/pause-arm:3.1
+3.1: Pulling from mirrorgooglecontainers/pause-arm
+7fe7c69563d3: Pull complete
+Digest: sha256:c84b0a3a07b628bc4d62e5047d0f8dff80f7c00979e1e28a821a033ecda8fe53
+Status: Downloaded newer image for mirrorgooglecontainers/pause-arm:3.1
+root@raspberrypi:/home/pi# docker pull mirrorgooglecontainers/etcd-arm:3.2.24
+3.2.24: Pulling from mirrorgooglecontainers/etcd-arm
+c91ff3b58e6d: Pull complete
+c60d1ab3d9cd: Pull complete
+e663e6d6250f: Pull complete
+Digest: sha256:e36de53a3947be8ed91dd02ef0ad25dad076714bdd5fcf95e332802191185bba
+Status: Downloaded newer image for mirrorgooglecontainers/etcd-arm:3.2.24
+root@raspberrypi:/home/pi# docker pull argon99/coredns-rpi
+Using default tag: latest
+latest: Pulling from argon99/coredns-rpi
+95d54dd4bdad: Pull complete
+72bf7d76c392: Pull complete
+f157213c8319: Pull complete
+655602447b99: Pull complete
+5bf68290da82: Pull complete
+Digest: sha256:ed867acf9c9492ae340f578baa3a356f833e1892e597859b4ccc7cf7fa8e3b8c
+Status: Downloaded newer image for argon99/coredns-rpi:latest
+root@raspberrypi:/home/pi#
