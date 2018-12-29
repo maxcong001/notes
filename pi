@@ -26,7 +26,10 @@ SELINUX=permissive
         不禁用selinux的话有时还会出现明明容器里是root身份运行，操作挂载进来的主机文件夹时没有权限的情况，这时候要么配置selinux的权限，要么就禁掉selinux
         另外，当docker的storage-driver使用overlay2的时候，低版本内核的selinux不支持overlay2文件驱动，docker启动时设置为--selinux-enabled会失败报错:“Error starting daemon: SELinux is not supported with the overlay2 graph driver on this kernel”，需设置--selinux-enabled=false
 ``` 
-
+准备docker images
+```   
+mirrorgooglecontainers
+```   
 
 
 开启memory的cgroup功能
