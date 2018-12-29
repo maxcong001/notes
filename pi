@@ -1,9 +1,19 @@
 docker
+```
 https://download.docker.com/linux/raspbian/dists/stretch/pool/stable/armhf/
+```
 install k8s
-
-
+```
 curl https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg | apt-key add -
 
 echo "deb https://mirrors.aliyun.com/kubernetes/apt/ kubernetes-xenial main" > /etc/apt/sources.list.d/kubernetes.list
 apt-get install -y kubeadm
+
+``
+开启memory的cgroup功能
+```
+树莓派是基于debian的系统，而debian默认没有mount memory的cgroup，这里需要手动开启
+编辑/boot/cmdline.txt，在该行的末尾添加此文本，但不要创建任何新行：
+cgroup_enable=memory
+重启
+```
