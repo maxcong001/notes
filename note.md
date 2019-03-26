@@ -45,3 +45,7 @@ Beast 	145949.15 	28.19%
 RESTinio (timers) 	115309.33 	22.27%
 Restbed 	58223.26 	11.25%
 Cpprestsdk 	9487.37 	1.83%
+
+
+
+ while true;do test=`ps -ef | grep -v "grep" |grep "redis-server 135.251.166.251"|awk '{print $2}'`;echo $test;`sudo kill -9 $test`;sleep 1;done
