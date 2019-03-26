@@ -132,3 +132,7 @@ You can now join any number of machines by running the following on each node
 as root:
 
   kubeadm join 192.168.31.133:6443 --token 1e242f.z7iu3hnvbq3xlkyi --discovery-token-ca-cert-hash sha256:a143d509219aa09f286c51e07cde7d2c9c1b9266a6c7d85500ca1bffb77216c3
+
+
+route -n
+sudo route del default gw 10.242.146.1
