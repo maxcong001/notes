@@ -15,3 +15,35 @@ lsslogin1:/home/mcong> query rel=grpm|grep 966238
 
 TPKT: RFC2126 chap:4.3 https://tools.ietf.org/html/rfc2126
 
+PATH=$PATH:$HOME/.local/bin:$HOME/bin
+
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib64
+
+
+
+export PATH
+
+set -o vi
+
+export LD_LIBRARY_PATH=/usr/local/lib
+
+export CMAKE_INCLUDE_PATH=/usr/local/include/hiredis
+export CMAKE_LIBRARY_PATH=/usr/local/lib
+export TMOUT=1000000
+export ROOT=/home/mcong/
+#export http_proxy=localhost:10000
+#export https_proxy=$http_proxy
+export GOROOT=/usr/local/go
+export GOBIN=$GOROOT/bin
+export PATH=$PATH:$GOBIN
+export GOPATH=/home/mcong/GOPATH
+cd $ROOT
+MAVEN_HOME=/home/mcong/apache-maven-3.3.9
+export MAVEN_HOME
+export PATH=${PATH}:${MAVEN_HOME}/bin
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
+export http_proxy="http://135.245.48.34:8000"
+export https_proxy="http://135.245.48.34:8000"
+export PATH=${PATH}:/home/mcong/sonar-scanner-3.3.0.1492-linux/bin
+export PATH=${PATH}:/home/mcong/build-wrapper-linux-x86
