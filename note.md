@@ -51,3 +51,7 @@ Cpprestsdk 	9487.37 	1.83%
 
 
  while true;do test=`ps -ef | grep -v "grep" |grep "redis-server 135.251.166.251"|awk '{print $2}'`;echo $test;`sudo kill -9 $test`;sleep 1;done
+## how to find image && image list
+ curl <registry URL>/v2/<name dir>/tags/list
+## how to find image rep
+ curl <registry URL>/v2/_catalog
