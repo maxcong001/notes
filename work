@@ -47,3 +47,6 @@ export http_proxy="http://135.245.48.34:8000"
 export https_proxy="http://135.245.48.34:8000"
 export PATH=${PATH}:/home/mcong/sonar-scanner-3.3.0.1492-linux/bin
 export PATH=${PATH}:/home/mcong/build-wrapper-linux-x86
+
+## add wsl support:
+    "terminal.integrated.shell.windows":"C:\\Windows\\System32\\wsl.exe",
