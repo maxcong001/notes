@@ -50,3 +50,13 @@ export PATH=${PATH}:/home/mcong/build-wrapper-linux-x86
 
 ## add wsl support:
     "terminal.integrated.shell.windows":"C:\\Windows\\System32\\wsl.exe",
+## submit code
+
+1. git clone tas super project
+2. (optional) git checkout ntas-190
+3. git submodule --init branchname
+4. git checkout yourbranch
+5. (optional)git pull
+6. git push orign yourbranch
+7. cd to tas&& git checkout yourbranch
+8. git push orign yourbranch
