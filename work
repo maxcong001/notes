@@ -52,11 +52,20 @@ export PATH=${PATH}:/home/mcong/build-wrapper-linux-x86
     "terminal.integrated.shell.windows":"C:\\Windows\\System32\\wsl.exe",
 ## submit code
 
-1. git clone tas super project
-2. (optional) git checkout ntas-190
-3. git submodule --init branchname
-4. git checkout yourbranch
+1. git clone git@gitlabe1.ext.net.nokia.com:tas/tas.git
+2. (optional) git checkout ntas-19-0
+3. git submodule update --init sdhelper-client
+4. git checkout ntas-19-0_FC001162-sdhelper-java-client-sync-interface-support
 5. (optional)git pull
-6. git push orign yourbranch
-7. cd to tas&& git checkout yourbranch
-8. git push orign yourbranch
+6. git add&&git commit&&git push origin ntas-19-0_FC001162-sdhelper-java-client-sync-interface-support
+7. cd to tas&& git checkout ntas-19-0_FC001162-sdhelper-java-client-sync-interface-support(git add && git commit)
+8. git push orign ntas-19-0_FC001162-sdhelper-java-client-sync-interface-support
+
+go to https://gitlabe1.ext.net.nokia.com/tas/tas/merge_requests/10030
+then delete WIP, then @person to review
+(note: there are two level of this, one is in your submodule one is in tas level)
+
+in the web page http://tas-ci.dynamic.nsn-net.net/ci/ntas-19-0
+click until all green.
+
+edit "ready to merge" then save it.
