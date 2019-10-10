@@ -69,3 +69,8 @@ in the web page http://tas-ci.dynamic.nsn-net.net/ci/ntas-19-0
 click until all green.
 
 edit "ready to merge" then save it.
+
+
+# rpm
+rpm2cpio xxx.rpm | cpio -div
+
