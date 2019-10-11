@@ -74,3 +74,5 @@ edit "ready to merge" then save it.
 # rpm
 rpm2cpio xxx.rpm | cpio -div
 
+yum install --downloadonly --downloaddir=xxx
+
