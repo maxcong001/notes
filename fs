@@ -1025,3 +1025,99 @@ yum install -y autoconf automake libtool gcc- c++ ncurses- devel make zlib- deve
 </extension> 
 
 在 FS_CLI.exe中运行reloadxml即可。
+
+
+这次来说说 freeSWITCH 的安装和配置。
+
+1) 安装
+
+freeSWITCH 下载页面：https://freeswitch.org/confluence/display/FREESWITCH/Installation 。
+
+我们 Windows 7 下，使用 1.6.17 x64 版本，下载地址为：http://files.freeswitch.org/windows/installer/x64/FreeSWITCH-1.6.17-x64-Release.msi。
+
+选择完整安装，一路 Next 即可。
+
+安装完毕后，需要做一些配置。
+
+2) wss 配置
+
+因为 WebRTC 需要 https ，对应的 WebSocket 也要 SSL 。freeSWITCH 支持 SSL 但默认没打开。
+
+wss 配置分两部分，
+conf/vars.xml 有两个开关，打开。类似下面：
+
+<X-PRE-PROCESS cmd="set" data="internal_ssl_enable=true"/> 
+
+<X-PRE-PROCESS cmd="set" data="external_ssl_enable=true"/>
+
+    1
+    2
+    3
+
+conf/sip_profiles/internal.xml 中确保下面两个配置打开：
+
+<!-- for sip over websocket support -->
+<param name="ws-binding"  value=":5066"/>
+
+<!-- for sip over secure websocket support -->
+<!-- You need wss.pem in $${certs_dir} for wss or one will be created for you -->
+<param name="wss-binding" value=":7443"/>    
+
+    1
+    2
+    3
+    4
+    5
+    6
+
+SIP 服务的端口是 5060 ，WebSocket（ws）服务的端口是 5066 ， wss 端口是 7443 。
+
+3）局域网支持
+
+我在局域网内进行测试，得做一个 ACL 配置，否则调不通。
+
+conf/autoload_configs/acl.conf.xml 中，加入下面配置：
+
+<list name="localnet.auto" default="allow">
+</list>
+
+    1
+    2
+
+然后，conf/sip_profiles/internal.xml 中加入下列配置：
+
+<param name="apply-candidate-acl" value="localnet.auto"/>
+
+    1
+
+4) 运行
+
+注意用管理员权限来启动 freeSWITCH。
+
+打开管理员权限的 cmd ，切换到 freeSWITCH 安装目录下，运行 FreeSwitchConsole.exe 。
+
+启动完毕后，freeSWITCH会进入命令交互模式，可以直接输入命令。使用下列命令验证是否启动正常：
+
+    version ，显示版本
+    show codecs ，显示编解码器
+    sofia status profile internal ，查看
+    shutdown ，退出
+    help ，显示帮助
+
+5）验证端口
+
+启动后，TCP 5060、UDP 5060 、TCP 5066 、TCP 7433 这几个端口应该被监听。
+
+可以使用下面命令：
+
+netstat -an | find "506"
+
+netstat -an | find "7433"
+
+    1
+    2
+    3
+
+6）语音电话测试
+
+
