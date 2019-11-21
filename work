@@ -76,3 +76,4 @@ rpm2cpio xxx.rpm | cpio -div
 
 yum install --downloadonly --downloaddir=xxx
 
+yum -v list ntas-lcp-grpcwrapper-devel --show-duplicates
