@@ -15,7 +15,10 @@ https://download.docker.com/linux/raspbian/dists/stretch/pool/stable/armhf/
 
 
 ``` 
-
+```
+    curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
+    sudo usermod -aG docker $USER
+```
 install k8s
 https://blog.csdn.net/liukuan73/article/details/83150473
 
