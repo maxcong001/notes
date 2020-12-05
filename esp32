@@ -19,3 +19,6 @@ idf.py -p PORT monitor
 ## set target board and config project
 idf.py set-target esp32
 idf.py menuconfig
+
+## components size
+make size-components 查看生成的固件内存使用情况
